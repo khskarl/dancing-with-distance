@@ -7,7 +7,7 @@ uniform vec2 resolution;
 const int MAX_PARTICLES = 100;
 uniform vec2 positions[MAX_PARTICLES];
 
-float sdCircle (vec2 p, float s ) {
+float sdCircle (vec2 p, float s) {
 	return length(p) - s;
 }
 
@@ -61,8 +61,8 @@ void main ()	{
 
 	float dist = 99999.0;
 	for (int i = 0; i < MAX_PARTICLES; i++) {
-		float d = sdCircle(coord - positions[i], 1.0);
-		dist = opBlend(dist, d, 50.0);
+		float d = sdCircle(coord - positions[i], 2.5);
+		dist = opBlend(dist, d, 30.0);
 	}
 
 	vec3 color = getColor(dist);

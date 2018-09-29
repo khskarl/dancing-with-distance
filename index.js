@@ -61,8 +61,6 @@ function init() {
 	loader.load('sdf.vs', function (data) { vShader = data; whenDoneSetupShader(); });
 }
 
-
-
 function animate() {
 	requestAnimationFrame(animate);
 	update();
@@ -70,7 +68,9 @@ function animate() {
 }
 
 function update() {
-	dancers.update();
+	let dt = 0.01666666;
+	// let dt = 1.0;
+	dancers.update(dt);
 }
 
 function render() {

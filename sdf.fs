@@ -26,7 +26,6 @@ float opBlend(float a, float b, float k) {
 }
 
 vec3 getColor (float d) {
-	
 	if (d > 1.0) {
 		return vec3(0.01, 0.01, 0.05);	
 	}
@@ -42,18 +41,20 @@ void main()	{
 	float dist = 200.0;
 	for (int i = 0; i < 14; i++) {
 		float x = float(i);
-		for (int j = 0; j < 10; j++) {
+		for (int j = 0; j < 11; j++) {
 			float y = float(j);
 
-			float t = time * 0.2;
+			float t = time * 0.01;
 
-			vec2 position = vec2(x * 100.0 + sin(t + x), y * 100.0 + cos(t + y));
-			float d = sdCircle(coord - position, 10.0);
-			dist = opBlend(dist, d, 20.0);
+			vec2 position = vec2(
+				x * 100.0 + cos(t + (x + y) * 2.0) * 50.0, 
+				y * 100.0 + sin(t + (y + x * 11.0) * 2.0) * 50.0
+			);
+
+			float d = sdCircle(coord - position, 1.0);
+			dist = opBlend(dist, d, 50.0);
 		}
 	}
-
-	// float dist = opBlend(d1, d2, 20.0);
 
 	vec3 color = getColor(dist);
 	gl_FragColor = vec4(color, 1.0);

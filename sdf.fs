@@ -40,11 +40,17 @@ void main()	{
 	vec2 coord = vec2(gl_FragCoord.xy);
 	
 	float dist = 200.0;
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 14; i++) {
 		float x = float(i);
-		vec2 position = vec2(100.0 * (x + sin(time * 0.05 + x)) + 200.0, 300.0);
-		float d = sdCircle(coord - position, 10.0);
-		dist = opBlend(dist, d, 20.0);
+		for (int j = 0; j < 10; j++) {
+			float y = float(j);
+
+			float t = time * 0.2;
+
+			vec2 position = vec2(x * 100.0 + sin(t + x), y * 100.0 + cos(t + y));
+			float d = sdCircle(coord - position, 10.0);
+			dist = opBlend(dist, d, 20.0);
+		}
 	}
 
 	// float dist = opBlend(d1, d2, 20.0);
